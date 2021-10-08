@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package search.service.v1;
+option go_package = "github.com/ekonugroho/grpc-simple/proto/proto;search";
+import "google/protobuf/field_mask.proto";
+
+message Search {
+  string valueId = 1;
+  string   value = 2;
+  string  type = 3;
+  string popular = 4;
+}
+
+
+message SearchRequest {
+  string value = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message SearchResponse {
+
+  repeated Search data = 1;
+  string message = 2;
+}
+
+service GreetService{
+  rpc Search(SearchRequest) returns (SearchResponse) {};
+
+}
